@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login & Register</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Nunito:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <style>
+      /* General Styling */
+      body {
+        font-family: Nunito, Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: 100vh;
+        margin: 0;
+        background: linear-gradient(rgba(0, 29, 61, 0.7), rgba(0, 29, 61, 0.7)),
+          url("../img/water-5049286_1920.jpg") no-repeat bottom/cover;
+        position: relative;
+      }
+
+      .container {
+        width: 90%;
+        max-width: 400px;
+        padding: 20px;
+        background-color: rgba(0, 29, 61, 0.8);
+        box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+        border-radius: 10px;
+        margin-top: 20px;
+      }
+
+      /* Title Styling */
+      .header {
+        text-align: center;
+        font-size: 28px;
+        font-weight: bold;
+        color: #f9d371;
+        margin-bottom: 0.8rem;
+        font-family: "Poppins", sans-serif;
+      }
+
+      /* Form Toggle Button Styles */
+      .form-toggle {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+      }
+
+      .form-toggle button {
+        width: 48%;
+        padding: 10px;
+        background-color: #f9d371;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 16px;
+        color: #001d3d;
+      }
+
+      .form-toggle .active {
+        background-color: #ffc300;
+        color: white;
+      }
+
+      h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #eaecee;
+      }
+
+      /* Input Group Styling */
+      .input-group {
+        margin-bottom: 20px;
+        position: relative;
+      }
+
+      .input-group label {
+        margin-bottom: 5px;
+        display: block;
+        color: #eaecee;
+      }
+
+      .input-group input {
+        width: 95%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255, 0.2);
+        color: #eaecee;
+      }
+
+      /* Button Styles */
+      button {
+        padding: 10px;
+        background-color: #f9d371;
+        color: #001d3d;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      button:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+      }
+
+      /* Password Strength Bar */
+      #password-strength {
+        height: 5px;
+        background-color: #ccc;
+        border-radius: 3px;
+        margin-top: 5px;
+      }
+
+      #password-strength.weak {
+        background-color: red;
+      }
+
+      #password-strength.medium {
+        background-color: orange;
+      }
+
+      #password-strength.strong {
+        background-color: green;
+      }
+
+      /* Password Tips */
+      #password-tips {
+        list-style: none;
+        padding: 0;
+        font-size: 12px;
+      }
+
+      #password-tips li {
+        margin-top: 5px;
+        color: #888;
+      }
+
+      #password-tips li.valid {
+        color: green;
+      }
+
+      #password-tips li.invalid {
+        color: red;
+      }
+
+      /* Error Message Styling */
+      .error-message {
+        color: red;
+        font-size: 12px;
+        margin-top: 5px;
+        visibility: hidden;
+      }
+
+      /* Toggle Password */
+      .toggle-password {
+        position: absolute;
+        right: 10px;
+        top: 38px;
+        cursor: pointer;
+        font-size: 12px;
+        color: #f9d371;
+        user-select: none;
+      }
+
+      /* Panic Button Styling */
+      .panic-button {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        z-index: 1000;
+        font-size: 1rem;
+        padding: 0.7rem 1.3rem;
+        background: #ff4c4c;
+        color: #fff;
+        border: 2px solid #ffffff;
+        border-radius: 50px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        transition: background 0.3s ease, transform 0.3s ease,
+          box-shadow 0.3s ease;
+        animation: pulse 1s infinite;
+      }
+
+      #panicButton:hover {
+        background: #e63939;
+        transform: scale(1.05);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+      }
+
+      /* Pulse Animation */
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+        50% {
+          transform: scale(1.1);
+          opacity: 0.8;
+        }
+      }
+
+      @media screen and (max-width: 768px) {
+        .header {
+          font-size: 24px;
+        }
+
+        .container {
+          width: 80%;
+          margin-top: 50px;
+          padding: 15px;
+        }
+
+        .form-toggle button {
+          font-size: 14px;
+        }
+
+        h2 {
+          font-size: 20px;
+        }
+      }
+
+      @media screen and (max-width: 480px) {
+        .header {
+          font-size: 20px;
+        }
+
+        .container {
+          padding: 10px;
+        }
+
+        .form-toggle button {
+          font-size: 12px;
+        }
+
+        h2 {
+          font-size: 18px;
+        }
+
+        .input-group label {
+          font-size: 14px;
+        }
+
+        .input-group input {
+          padding: 8px;
+        }
+
+        button {
+          padding: 8px;
+          font-size: 14px;
+        }
+
+        .panic-button {
+          font-size: 16px;
+          padding: 0.5rem 0.9rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">Calmspace</div>
+
+    <div class="container">
+      <!-- Panic Button -->
+      <button class="panic-button">
+        <i class="fas fa-heartbeat"></i> Panic
+      </button>
+
+      <!-- Form Container -->
+      <div class="form-container">
+        <div class="form-toggle">
+          <button id="login-btn" class="active">Login</button>
+          <button id="register-btn">Register</button>
+        </div>
+        <div id="login-form">
+          <h2>Login</h2>
+          <form id="login">
+            <div class="input-group">
+              <label for="login-email">Email</label>
+              <input type="email" id="login-email" required />
+              <small class="error-message"></small>
+            </div>
+            <div class="input-group">
+              <label for="login-password">Password</label>
+              <input type="password" id="login-password" required />
+              <small class="error-message"></small>
+            </div>
+            <button type="submit">Login</button>
+          </form>
+        </div>
+        <div id="register-form" style="display: none">
+          <h2>Register</h2>
+          <form id="register">
+            <div class="input-group">
+              <label for="register-name">Name</label>
+              <input type="text" id="register-name" required maxlength="30" />
+              <i class="status-icon"></i>
+              <small class="error-message"></small>
+            </div>
+            <div class="input-group">
+              <label for="register-email">Email</label>
+              <input type="email" id="register-email" required />
+              <i class="status-icon"></i>
+              <small class="error-message"></small>
+            </div>
+            <div class="input-group">
+              <label for="register-password">Password</label>
+              <input type="password" id="register-password" required />
+              <i class="status-icon"></i>
+              <small class="error-message"></small>
+              <div id="password-strength"></div>
+              <ul id="password-tips">
+                <li id="length-tip">At least 8 characters</li>
+                <li id="number-tip">At least one number</li>
+                <li id="uppercase-tip">At least one uppercase letter</li>
+                <li id="special-char-tip">
+                  At least one special character (@, #, $, etc.)
+                </li>
+              </ul>
+            </div>
+            <div class="input-group">
+              <label for="register-confirm-password">Confirm Password</label>
+              <input type="password" id="register-confirm-password" required />
+              <i class="status-icon"></i>
+              <small class="error-message"></small>
+            </div>
+            <button type="submit" id="register-submit" disabled>
+              Register
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Panic button functionality
+      document.querySelector(".panic-button").addEventListener("click", () => {
+        window.location.href = "https://www.youtube.com/watch?v=uLFN3cJ9Nyw";
+      });
+
+      // Get elements
+      const loginBtn = document.getElementById("login-btn");
+      const registerBtn = document.getElementById("register-btn");
+      const loginForm = document.getElementById("login-form");
+      const registerForm = document.getElementById("register-form");
+      const passwordStrength = document.getElementById("password-strength");
+      const registerSubmit = document.getElementById("register-submit");
+      const passwordTips = {
+        length: document.getElementById("length-tip"),
+        number: document.getElementById("number-tip"),
+        uppercase: document.getElementById("uppercase-tip"),
+        specialChar: document.getElementById("special-char-tip"),
+      };
+
+      // Toggle forms
+      loginBtn.addEventListener("click", () => {
+        loginBtn.classList.add("active");
+        registerBtn.classList.remove("active");
+        loginForm.style.display = "block";
+        registerForm.style.display = "none";
+      });
+
+      registerBtn.addEventListener("click", () => {
+        registerBtn.classList.add("active");
+        loginBtn.classList.remove("active");
+        registerForm.style.display = "block";
+        loginForm.style.display = "none";
+      });
+
+      // Helper function to show/hide error messages
+      function showError(input, message) {
+        const errorMessage = input.nextElementSibling.nextElementSibling;
+        errorMessage.innerText = message;
+        errorMessage.style.visibility = "visible";
+        input.classList.add("invalid");
+      }
+
+      function hideError(input) {
+        const errorMessage = input.nextElementSibling.nextElementSibling;
+        errorMessage.style.visibility = "hidden";
+        input.classList.remove("invalid");
+      }
+
+      // Email validation function
+      function isValidEmail(email) {
+        const emailPattern = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+        return emailPattern.test(email);
+      }
+
+      // Password validation and strength check
+      function validatePassword(password) {
+        const lengthValid = password.length >= 8;
+        const numberValid = /\d/.test(password);
+        const uppercaseValid = /[A-Z]/.test(password);
+        const specialCharValid = /[!@#$%^&*]/.test(password);
+
+        passwordTips.length.classList.toggle("valid", lengthValid);
+        passwordTips.number.classList.toggle("valid", numberValid);
+        passwordTips.uppercase.classList.toggle("valid", uppercaseValid);
+        passwordTips.specialChar.classList.toggle("valid", specialCharValid);
+
+        passwordStrength.className = "";
+        if (lengthValid && numberValid && uppercaseValid && specialCharValid) {
+          passwordStrength.classList.add("strong");
+        } else if (
+          lengthValid &&
+          (numberValid || uppercaseValid || specialCharValid)
+        ) {
+          passwordStrength.classList.add("medium");
+        } else {
+          passwordStrength.classList.add("weak");
+        }
+
+        return lengthValid && numberValid && uppercaseValid && specialCharValid;
+      }
+
+      // Real-time validation
+      document
+        .getElementById("register-name")
+        .addEventListener("input", function () {
+          if (this.value.trim() === "") {
+            showError(this, "Name is required.");
+          } else {
+            hideError(this);
+          }
+        });
+
+      document
+        .getElementById("register-email")
+        .addEventListener("input", function () {
+          if (!isValidEmail(this.value.trim())) {
+            showError(this, "Please enter a valid email address.");
+          } else {
+            hideError(this);
+          }
+        });
+
+      document
+        .getElementById("register-password")
+        .addEventListener("input", function () {
+          const password = this.value.trim();
+          const valid = validatePassword(password);
+
+          if (!valid) {
+            showError(this, "Password does not meet the criteria.");
+          } else {
+            hideError(this);
+          }
+        });
+
+      document
+        .getElementById("register-confirm-password")
+        .addEventListener("input", function () {
+          const password = document
+            .getElementById("register-password")
+            .value.trim();
+          if (this.value.trim() !== password) {
+            showError(this, "Passwords do not match.");
+          } else {
+            hideError(this);
+          }
+        });
+
+      // Form validation before submission
+      document
+        .getElementById("register")
+        .addEventListener("input", function () {
+          const name = document.getElementById("register-name").value.trim();
+          const email = document.getElementById("register-email").value.trim();
+          const password = document
+            .getElementById("register-password")
+            .value.trim();
+          const confirmPassword = document
+            .getElementById("register-confirm-password")
+            .value.trim();
+
+          const isFormValid =
+            name !== "" &&
+            isValidEmail(email) &&
+            validatePassword(password) &&
+            password === confirmPassword;
+
+          registerSubmit.disabled = !isFormValid;
+        });
+
+      document
+        .getElementById("register")
+        .addEventListener("submit", function (e) {
+          e.preventDefault(); 
+
+          const email = document.getElementById("register-email").value.trim();
+          const password = document
+            .getElementById("register-password")
+            .value.trim();
+
+          // Check if email already exists in localStorage
+          if (localStorage.getItem(email)) {
+            alert(
+              "This email is already registered. Please use a different email or log in."
+            );
+          } else {
+            localStorage.setItem(email, JSON.stringify({ password: password }));
+
+            alert("Registration successful! You can now log in.");
+            registerForm.style.display = "none";
+            loginForm.style.display = "block";
+            loginBtn.classList.add("active");
+            registerBtn.classList.remove("active");
+          }
+        });
+
+      document.getElementById("login").addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const email = document.getElementById("login-email").value.trim();
+        const password = document.getElementById("login-password").value.trim();
+
+        const storedUser = JSON.parse(localStorage.getItem(email));
+
+        if (storedUser && storedUser.password === password) {
+          window.location.href = "home.html"; 
+        } else {
+          alert("Invalid email or password.");
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resources - CalmSpace</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Nunito:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Nunito", sans-serif;
+        background-color: #001d3d;
+        margin: 0;
+        padding: 0;
+        color: #eaecee;
+        background: linear-gradient(rgba(0, 29, 61, 0.7), rgba(0, 29, 61, 0.7)),
+          url("../img/notepad-1276779_1920.jpg") no-repeat center/cover;
+        background-attachment: fixed;
+      }
+
+      .navbar {
+        position: fixed;
+        width: 100%;
+        z-index: 1000;
+        transition: background-color 0.3s ease;
+        background-color: transparent;
+      }
+
+      .navbar.scrolled {
+        background-color: rgba(0, 29, 61, 0.8);
+      }
+
+      .navbar-brand {
+        color: #f9d371;
+        font-size: 1.8rem;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+
+      .nav-link {
+        color: #e0e4e8;
+        font-weight: 500;
+        font-size: 1.1rem;
+        margin-right: 1.5rem;
+        transition: color 0.3s ease, transform 0.3s ease;
+      }
+
+      .nav-link:hover {
+        color: #f9d371;
+        transform: scale(1.05);
+      }
+
+      .nav-item.active .nav-link {
+        color: #f9d371;
+        font-weight: bold;
+      }
+
+      .btn-login {
+        background-color: #f9d371;
+        color: #001d3d;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+      }
+
+      .btn-login:hover {
+        background-color: #ffc300;
+      }
+
+      .article-list-container {
+        overflow-x: hidden;
+        white-space: nowrap;
+      }
+
+      .article-list {
+        display: inline-flex;
+        transition: transform 0.3s ease;
+        white-space: nowrap;
+        scroll-behavior: smooth;
+      }
+
+      .article-card {
+        width: 370px;
+        background-color: #001d3d;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        display: inline-block;
+        margin-right: 20px;
+        text-align: center;
+      }
+
+      .article-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      .article-image img {
+        width: 100%;
+        height: 15rem;
+        object-fit: cover;
+        object-position: center;
+        border-bottom: 2px solid #f9d371;
+      }
+
+      .article-content {
+        padding: 20px;
+        color: #eaecee;
+        text-align: left;
+      }
+
+      .article-content h3 {
+        font-size: 1.4rem;
+        color: #f9d371;
+        margin-bottom: 10px;
+      }
+
+      .article-content p {
+        font-size: 1rem;
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      .btn-read-more {
+        background-color: #f9d371;
+        color: #001d3d;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        font-size: 0.9rem;
+        margin-top: 10px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+      }
+
+      .btn-read-more:hover {
+        background-color: #ffc300;
+        transform: scale(1.05);
+      }
+
+      .modal-content {
+        background-color: #001d3d;
+        color: #eaecee;
+        border-radius: 10px;
+      }
+
+      .modal-header {
+        border-bottom: 1px solid #f9d371;
+      }
+
+      .modal-footer {
+        border-top: 1px solid #f9d371;
+      }
+
+      .modal-title {
+        color: #f9d371;
+      }
+
+      .modal.fade .modal-dialog {
+        transform: translateY(-50px);
+        transition: transform 0.3s ease-out;
+      }
+
+      .modal.show .modal-dialog {
+        transform: translateY(0);
+      }
+
+      
+
+      .hero {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: #eaecee;
+        padding: 20px;
+      }
+
+      .fade-in {
+        opacity: 0;
+        animation: fadeIn ease 3s;
+        animation-fill-mode: forwards;
+      }
+
+      @keyframes fadeIn {
+        0% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+
+      .article-categories {
+        margin-bottom: 60px;
+      }
+
+      .category {
+        display: flex;
+        align-items: center;
+        margin-top: 2rem;
+      }
+
+      .category-title {
+        font-size: 2rem;
+        color: #f9d371;
+        margin-right: 20px;
+        text-transform: uppercase;
+        flex-grow: 1;
+      }
+
+      .category-controls {
+        display: flex;
+        align-items: center;
+      }
+
+      .scroll-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 2vw;
+        height: 2vw;
+        background-color: #f9d371;
+        border: none;
+        color: #001d3d;
+        padding: 10px;
+        cursor: pointer;
+        border-radius: 50%;
+        font-size: 1rem;
+        margin: 0 10px;
+      }
+
+      .scroll-button:hover {
+        background-color: #ffc300;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="home.html">CalmSpace</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="home.html"
+                ><i class="fas fa-home"></i> Home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="meditation.html"
+                ><i class="fas fa-yin-yang"></i> Meditation</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="sleep.html"
+                ><i class="fas fa-bed"></i> Sleep</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="blog.html"
+                ><i class="fas fa-copy"></i> Blogs</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="statusCheck.html"
+                ><i class="fas fa-heart"></i> Quiz</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="resources.html"
+                ><i class="fas fa-book"></i> Resources</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="supportServices.html"
+                ><i class="fas fa-handshake"></i> Support</a
+              >
+            </li>
+            <li class="nav-item">
+              <a href="login.html"
+                ><button class="btn-login">Log out</button></a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero fade-in">
+      <h1>All Blogs</h1>
+      <p>
+        Explore all of our wellness blogs on mental health as well as personal
+        stories of courage and resilience
+      </p>
+    </div>
+
+    <!-- Categories Section -->
+    <div class="container mt-5 article-categories">
+      <div class="category">
+        <h2 class="category-title">Blogs</h2>
+        <div class="category-controls">
+          <button class="scroll-button left">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <button class="scroll-button right">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Article Cards Section -->
+      <div class="article-list-container">
+        <div class="article-list">
+          <!-- Article 1 Card -->
+          <div class="article-card">
+            <div class="article-image">
+              <img src="../img/exercise2.jpg" alt="Understanding Anxiety" />
+            </div>
+            <div class="article-content">
+              <h3>Boost Your Mental Health</h3>
+              <p>
+                Physical activity is not only good for your body but also
+                essential for your mind. Here’s how exercise can help improve
+                your mood, reduce anxiety, and foster long-term mental
+                well-being.
+              </p>
+              <button
+                class="btn-read-more"
+                data-toggle="modal"
+                data-target="#article1Modal"
+              >
+                Read More
+              </button>
+            </div>
+          </div>
+
+          <!-- Article 2 Card -->
+          <div class="article-card">
+            <div class="article-image">
+              <img src="../img/sleep1.jpg" alt="Overcoming Stress" />
+            </div>
+            <div class="article-content">
+              <h3>Sleep And Mental Health</h3>
+              <p>
+                In our fast-paced world, sleep is often overlooked. But did you
+                know that sleep is one of the most crucial elements for
+                maintaining emotional stability and mental health?
+              </p>
+              <button
+                class="btn-read-more"
+                data-toggle="modal"
+                data-target="#article2Modal"
+              >
+                Read More
+              </button>
+            </div>
+          </div>
+
+          <!-- Article 3 Card -->
+          <div class="article-card">
+            <div class="article-image">
+              <img src="../img/mindful.jpg" alt="Self-Care Tips" />
+            </div>
+            <div class="article-content">
+              <h3>Mindfulness</h3>
+              <p>
+                An introduction to mindfulness, a powerful tool to reduce stress
+                and improve mental clarity. Learn the basics here.
+              </p>
+              <button
+                class="btn-read-more"
+                data-toggle="modal"
+                data-target="#article3Modal"
+              >
+                Read More
+              </button>
+            </div>
+          </div>
+
+          <!-- Article 4 Card -->
+          <div class="article-card">
+            <div class="article-image">
+              <img
+                src="https://cdn.pixabay.com/photo/2020/05/06/17/18/meditation-5138375_1280.png"
+                alt="Mindfulness for Beginners"
+              />
+            </div>
+            <div class="article-content">
+              <h3>Mindfulness for Beginners</h3>
+              <p></p>
+              <button
+                class="btn-read-more"
+                data-toggle="modal"
+                data-target="#article4Modal"
+              >
+                Read More
+              </button>
+            </div>
+          </div>
+
+          <!-- Article 5 Card -->
+          <div class="article-card">
+            <div class="article-image">
+              <img
+                src="../img/caricature-5268743_1920.jpg"
+                alt="Coping with Insomnia"
+              />
+            </div>
+            <div class="article-content">
+              <h3>Coping with Insomnia</h3>
+              <p>
+                Struggling with sleep? Learn about the causes of insomnia and
+                tips for improving your sleep quality.
+              </p>
+              <button
+                class="btn-read-more"
+                data-toggle="modal"
+                data-target="#article5Modal"
+              >
+                Read More
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal for Article 1 -->
+    <div
+      class="modal fade"
+      id="article1Modal"
+      tabindex="-1"
+      aria-labelledby="article1ModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="article1ModalLabel">
+              Boost Your Mental Health
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>
+              Regular exercise has long been associated with physical health
+              benefits such as weight control, increased strength, and improved
+              heart health. But did you know that it can also significantly
+              improve your mental health? Studies show that engaging in just 30
+              minutes of physical activity a few times a week can lead to better
+              mood regulation, stress relief, and even reduced symptoms of
+              depression and anxiety.
+            </p>
+            <p>
+              <strong>Key Takeaways:</strong>
+            </p>
+            <ul>
+              <li>
+                Regular exercise promotes the release of mood-enhancing
+                chemicals.
+              </li>
+              <li>
+                Physical activity reduces stress, anxiety, and depressive
+                symptoms.
+              </li>
+              <li>
+                Consistency is key—finding enjoyable activities helps make
+                exercise a lasting habit.
+              </li>
+            </ul>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal for Article 2 -->
+    <div
+      class="modal fade"
+      id="article2Modal"
+      tabindex="-1"
+      aria-labelledby="article2ModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="article2ModalLabel">
+              Sleep And Mental Health
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>
+              Sleep plays a vital role in how we feel both physically and
+              mentally. Getting enough sleep each night is essential for
+              emotional regulation, memory, and cognitive function.
+              Unfortunately, many of us don’t get the 7-9 hours of quality sleep
+              our bodies need to function at their best.
+            </p>
+            <p><strong>Key Takeaways:</strong></p>
+            <ul>
+              <li>
+                Aim for 7-9 hours of sleep each night for optimal mental health.
+              </li>
+              <li>Sleep deprivation can worsen anxiety and stress.</li>
+              <li>
+                Prioritize a bedtime routine to ensure restful, rejuvenating
+                sleep.
+              </li>
+            </ul>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal for Article 3 -->
+    <div
+      class="modal fade"
+      id="article3Modal"
+      tabindex="-1"
+      aria-labelledby="article3ModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="article3ModalLabel">Mindfulness</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>
+              Mindfulness is the practice of being present in the moment,
+              acknowledging your thoughts and feelings without judgment. By
+              embracing mindfulness, you can build greater emotional resilience,
+              reduce stress, and gain control over negative thinking patterns.
+            </p>
+            <p><strong>Key Takeaways:</strong></p>
+            <ul>
+              <li>
+                Mindfulness helps you stay present and calm, even in stressful
+                situations.
+              </li>
+              <li>
+                Regular mindfulness practices can reduce anxiety and improve
+                emotional balance.
+              </li>
+              <li>
+                Simple activities like mindful breathing and meditation can be
+                done anywhere, anytime.
+              </li>
+            </ul>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal for Article 4 -->
+    <div
+      class="modal fade"
+      id="article4Modal"
+      tabindex="-1"
+      aria-labelledby="article4ModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="article4ModalLabel">
+              Mindfulness for Beginners
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>
+              Mindfulness is the practice of being fully present in the moment.
+              In this article, we discuss the basics of mindfulness, its
+              benefits for mental health, and how to start practicing it through
+              simple techniques like mindful breathing and meditation.
+            </p>
+            <p><strong>Benefits of Mindfulness for Mental Health:</strong></p>
+            <ul>
+              <li>Reduces stress and anxiety</li>
+              <li>Improves focus and concentration</li>
+              <li>Enhances emotional regulation</li>
+              <li>Promotes relaxation and overall well-being</li>
+            </ul>
+
+            <p><strong>How to Practice Mindfulness: </strong></p>
+            <ul>
+              <li>
+                Focus on your breath, taking slow, deep breaths, and paying
+                attention to each inhale and exhale.
+              </li>
+              <li>
+                Set aside a few minutes daily to sit quietly and observe your
+                thoughts without judgment, returning your focus to your breath
+                whenever your mind wanders.
+              </li>
+            </ul>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal for Article 5 -->
+    <div
+      class="modal fade"
+      id="article5Modal"
+      tabindex="-1"
+      aria-labelledby="article5ModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="article5ModalLabel">
+              Coping with Insomnia
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>
+              Insomnia affects millions of people worldwide. This article dives
+              into the causes of insomnia, its impact on overall health, and
+              actionable steps you can take to improve your sleep quality.
+            </p>
+            <p><strong>Common Causes of Insomnia:</strong></p>
+            <ul>
+              <li>Stress and anxiety</li>
+              <li>Poor sleep habits</li>
+              <li>Caffeine or alcohol consumption</li>
+              <li>Medical conditions or medications</li>
+            </ul>
+            <p><strong>Impact of Insomnia on Health:</strong></p>
+            <ul>
+              <li>Fatigue and low energy</li>
+              <li>Difficulty concentrating</li>
+              <li>Mood swings or irritability</li>
+              <li>Weakened immune system</li>
+            </ul>
+            <p><strong>Tips to Improve Sleep Quality</strong></p>
+            <ul>
+              <li>
+                Stick to a consistent sleep schedule and relax before bed with
+                calming activities like reading or taking a warm bath.
+              </li>
+              <li>
+                Avoid using electronic devices at least an hour before bed to
+                reduce exposure to blue light, which can disrupt your sleep.
+              </li>
+              <li>
+                Try deep breathing, progressive muscle relaxation, or meditation
+                to calm your mind and body before sleep.
+              </li>
+            </ul>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Personal Stories Section -->
+    <div class="container mt-5 article-categories">
+      <div class="category">
+        <h2 class="category-title">Personal Stories</h2>
+        <div class="category-controls">
+          <button class="scroll-button left">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <button class="scroll-button right">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Article Cards Section -->
+      <div class="article-list-container">
+        <div class="article-list">
+          <!-- Article 1 Card -->
+          <div class="article-card">
+            <div class="article-image">
+              <img
+                src="../img/letter-board-5056401_1920.jpg"
+                alt="Understanding Anxiety"
+              />
+            </div>
+            <div class="article-content">
+              <h3>Coping with Loss</h3>
+              <p>
+                Read how individuals found peace and healing after experiencing
+                loss.
+              </p>
+              <button
+                class="btn-read-more"
+                data-toggle="modal"
+                data-target="#stories1Modal"
+              >
+                Read More
+              </button>
+            </div>
+          </div>
+
+          <!-- Article 2 Card -->
+          <div class="article-card">
+            <div class="article-image">
+              <img
+                src="../img/stress-2902537_1920.jpg"
+                alt="Overcoming Stress"
+              />
+            </div>
+            <div class="article-content">
+              <h3>Anxiety Recovery</h3>
+              <p>
+                Stories from people who have learned to manage anxiety and
+                regain control of their lives.
+              </p>
+              <button
+                class="btn-read-more"
+                data-toggle="modal"
+                data-target="#stories2Modal"
+              >
+                Read More
+              </button>
+            </div>
+          </div>
+
+          <!-- Article 3 Card -->
+          <div class="article-card">
+            <div class="article-image">
+              <img
+                src="../img/depression-6773286_1920.png"
+                alt="Self-Care Tips"
+              />
+            </div>
+            <div class="article-content">
+              <h3>Depression Journey</h3>
+              <p>
+                Discover the resilience of those who have navigated their way
+                through depression.
+              </p>
+              <button
+                class="btn-read-more"
+                data-toggle="modal"
+                data-target="#stories3Modal"
+              >
+                Read More
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal for Story 1 -->
+    <div
+      class="modal fade"
+      id="stories1Modal"
+      tabindex="-1"
+      aria-labelledby="stories1ModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="stories1ModalLabel">
+              A Light in the Darkness: Sarah's Story of Finding Hope After Loss
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>
+              Sarah never imagined she would lose her younger brother, Adam, at
+              just 24. His sudden death in a car accident shattered her world.
+              She felt a deep emptiness, a pain so raw that it seemed impossible
+              to move forward. The days that followed were filled with
+              darkness—each morning, she woke up hoping it was all just a
+              nightmare.
+            </p>
+            <p>
+              In the midst of her grief, Sarah remembered something Adam used to
+              say: "Life is too short not to find joy." It was a simple phrase,
+              but it stuck with her. On one particularly tough day, Sarah found
+              herself at a park where she and Adam had spent hours as kids. She
+              sat on a bench, tears streaming down her face, and for the first
+              time, allowed herself to truly feel everything—anger, sadness,
+              love, and loss.
+            </p>
+            <p>
+              Then, in that quiet moment, she made a choice: to honor Adam’s
+              memory not by letting the grief consume her, but by finding small
+              moments of joy each day. She started taking walks, reconnecting
+              with friends, and even dancing to her favorite songs—things that
+              once seemed impossible but gradually brought her peace.
+            </p>
+            <p>
+              Years later, Sarah still carries the pain of losing Adam, but she
+              also carries his light. She believes he would be proud of her
+              resilience and the way she’s learned to embrace life again. “The
+              pain will always be there,” she says. “But so will the love and
+              the lessons. I carry both with me.”
+            </p>
+            <p>
+              Sarah’s journey is a reminder that even in the deepest sorrow,
+              there can be a path to healing. By choosing to honor the ones we
+              lose with love, we find the strength to move forward, little by
+              little.
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal for Story 2 -->
+    <div
+      class="modal fade"
+      id="stories2Modal"
+      tabindex="-1"
+      aria-labelledby="stories2ModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="stories2ModalLabel">
+              A Quiet Victory: Jake's Story of Overcoming Anxiety
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>
+              Jake had always been a quiet person, but when anxiety took over
+              his life, he felt as though he was drowning in silence. It started
+              in his early twenties with racing thoughts, constant worry, and a
+              suffocating feeling in his chest. Simple tasks—like meeting
+              friends or going to work—became overwhelming. His mind would
+              spiral, and his body would shut down, making him feel trapped in
+              his own head.
+            </p>
+            <p>
+              For years, Jake tried to push through, thinking he just needed to
+              “snap out of it.” But the anxiety only grew stronger, leaving him
+              exhausted and isolated. He found it difficult to explain what he
+              was going through because it was invisible, and no one seemed to
+              understand. “It felt like I was fighting a battle that no one
+              could see,” he said.
+            </p>
+            <p>
+              One day, after yet another sleepless night, Jake decided he
+              couldn’t keep going like this. He reached out to a therapist,
+              something he had avoided for so long out of fear of judgment. In
+              therapy, he learned that anxiety wasn’t something to be “fixed” or
+              ignored. It was a part of him that needed understanding and care.
+              Together, they explored ways to manage the overwhelming
+              thoughts—deep breathing, grounding techniques, and learning to
+              challenge negative thinking patterns.
+            </p>
+            <p>
+              At first, progress was slow. Jake still had moments of panic, and
+              there were days when it felt like he was taking two steps backward
+              for every step forward. But with time, he learned to recognize the
+              signs of anxiety and to give himself space to breathe, to pause,
+              and to reframe his thoughts.
+            </p>
+            <p>
+              A year later, Jake could look back and see how far he had come. He
+              wasn’t “cured,” but he was stronger, more resilient, and more at
+              peace with himself. “It’s not about eliminating the anxiety,” he
+              says now. “It’s about learning how to live with it, not letting it
+              control my life.”
+            </p>
+            <p>
+              Jake’s journey is a testament to the power of asking for help and
+              taking small, deliberate steps toward healing. His story reminds
+              us that recovery is not linear and that each day we choose to keep
+              moving forward, no matter how small the step, is a victory.
+              Anxiety may never fully disappear, but with patience, support, and
+              self-compassion, we can regain control of our lives.
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal for Article 3 -->
+    <div
+      class="modal fade"
+      id="stories3Modal"
+      tabindex="-1"
+      aria-labelledby="stories3ModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="stories3ModalLabel">
+              Breaking Free: Emma’s Story of Battling Depression
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>
+              Emma’s life had always seemed perfect on the outside. She had a
+              good job, supportive friends, and a loving family. But inside, she
+              was fighting a silent battle with depression. It crept up on her
+              slowly—at first, just feelings of sadness that seemed to come and
+              go. But over time, those feelings grew heavier, and the joy she
+              once found in her work and relationships started to fade.
+            </p>
+            <p>
+              “I couldn’t explain it to anyone,” Emma recalled. “On the outside,
+              everything was fine, but inside, it felt like a constant cloud of
+              darkness. I couldn’t shake the feeling that I wasn’t enough—that I
+              wasn’t doing enough, or being enough.”
+            </p>
+            <p>
+              The turning point came one evening when Emma found herself crying
+              uncontrollably on her kitchen floor. It was then that she realized
+              she couldn’t keep pretending everything was okay. She reached out
+              to a therapist, and for the first time, she allowed herself to
+              admit the depth of her struggle. Through therapy, Emma learned
+              that depression wasn’t a weakness; it was a mental health
+              condition that could be managed and treated.
+            </p>
+            <p>
+              Over time, Emma started opening up more to her friends and family,
+              sharing the pain she had kept hidden for so long. She also took
+              small steps to care for herself: regular exercise, eating better,
+              and setting aside time for things that brought her joy, even when
+              she didn’t feel like it. Meditation became a lifeline, helping her
+              regain control of her thoughts and emotions.
+            </p>
+            <p>
+              Though there were still tough days, Emma learned how to navigate
+              through them, knowing that healing wasn’t about erasing the
+              depression—it was about finding balance and allowing herself to
+              feel, without judgment.
+            </p>
+            <p>
+              Today, Emma is living proof that recovery is possible. She
+              continues to prioritize her mental health, and her journey has
+              inspired others to seek help when they need it. “Depression made
+              me feel invisible, but reaching out for support made me feel seen
+              and understood,” she said. “I’ve learned that asking for help
+              isn’t a sign of weakness—it’s the first step toward healing.”
+            </p>
+            <p>
+              Emma’s story is a powerful reminder that no one is alone in their
+              struggles, and that there is always hope for recovery, no matter
+              how dark things may seem.
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+      document.querySelectorAll(".scroll-button").forEach((button) => {
+        button.addEventListener("click", function () {
+          const container = this.closest(".category").nextElementSibling;
+          const direction = this.classList.contains("left") ? "left" : "right";
+          const scrollAmount = 300;
+          if (direction === "left") {
+            container.scrollLeft -= scrollAmount;
+          } else {
+            container.scrollLeft += scrollAmount;
+          }
+        });
+      });
+
+      window.onscroll = function () {
+        const navbar = document.querySelector(".navbar");
+        if (
+          document.body.scrollTop > 50 ||
+          document.documentElement.scrollTop > 50
+        ) {
+          navbar.classList.add("scrolled");
+        } else {
+          navbar.classList.remove("scrolled");
+        }
+      };
+    </script>
+  </body>
+</html>

@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resources - CalmSpace</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Nunito:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Nunito", sans-serif;
+        background-color: #001d3d;
+        margin: 0;
+        padding: 0;
+        color: #eaecee;
+        background: linear-gradient(rgba(0, 29, 61, 0.7), rgba(0, 29, 61, 0.7)),
+          url("../img/reading.jpg") no-repeat center/cover;
+        background-attachment: fixed;
+      }
+
+      .navbar {
+        position: fixed;
+        width: 100%;
+        z-index: 1000;
+        transition: background-color 0.3s ease;
+        background-color: transparent;
+      }
+
+      .navbar.scrolled {
+        background-color: rgba(0, 29, 61, 0.8);
+      }
+
+      .navbar-brand {
+        color: #f9d371;
+        font-size: 1.8rem;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+
+      .nav-link {
+        color: #e0e4e8;
+        font-weight: 500;
+        font-size: 1.1rem;
+        margin-right: 1.5rem;
+        transition: color 0.3s ease, transform 0.3s ease;
+      }
+
+      .nav-link:hover {
+        color: #f9d371;
+        transform: scale(1.05);
+      }
+
+      .nav-item.active .nav-link {
+        color: #f9d371;
+        font-weight: bold;
+      }
+
+      .btn-login {
+        background-color: #f9d371;
+        color: #001d3d;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+      }
+
+      .btn-login:hover {
+        background-color: #ffc300;
+      }
+
+      .article-list-container {
+        overflow-x: hidden;
+        white-space: nowrap;
+      }
+
+      .article-list {
+        display: inline-flex;
+        transition: transform 0.3s ease;
+        white-space: nowrap;
+        scroll-behavior: smooth;
+      }
+
+      .article-card {
+        width: 370px;
+        background-color: #001d3d;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        display: inline-block;
+        margin-right: 20px;
+        text-align: center;
+      }
+
+      .article-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      .article-image img {
+        width: 100%;
+        height: 15rem;
+        object-fit: cover;
+        object-position: center;
+        border-bottom: 2px solid #f9d371;
+      }
+
+      .article-content {
+        padding: 20px;
+        color: #eaecee;
+        text-align: left;
+      }
+
+      .article-content h3 {
+        font-size: 1.4rem;
+        color: #f9d371;
+        margin-bottom: 10px;
+      }
+
+      .article-content p {
+        font-size: 1rem;
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      .btn-read-more {
+        background-color: #f9d371;
+        color: #001d3d;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        font-size: 0.9rem;
+        margin-top: 10px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+      }
+
+      .btn-read-more:hover {
+        background-color: #ffc300;
+        transform: scale(1.05);
+      }
+
+      .modal-content {
+        background-color: #001d3d;
+        color: #eaecee;
+        border-radius: 10px;
+      }
+
+      .modal-header {
+        border-bottom: 1px solid #f9d371;
+      }
+
+      .modal-footer {
+        border-top: 1px solid #f9d371;
+      }
+
+      .modal-title {
+        color: #f9d371;
+      }
+
+      .modal.fade .modal-dialog {
+        transform: translateY(-50px);
+        transition: transform 0.3s ease-out;
+      }
+
+      .modal.show .modal-dialog {
+        transform: translateY(0);
+      }
+
+      .video-list-container {
+        overflow-x: hidden;
+        white-space: nowrap;
+        scroll-behavior: smooth;
+      }
+
+      .video-list {
+        display: inline-flex;
+        transition: transform 0.3s ease;
+        white-space: nowrap;
+        scroll-behavior: smooth;
+      }
+
+      iframe {
+        width: 370px;
+        display: inline-block;
+        margin-right: 20px;
+        text-align: center;
+        border-radius: 1rem;
+      }
+
+      .hero {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: #eaecee;
+        padding: 20px;
+      }
+
+      .fade-in {
+        opacity: 0;
+        animation: fadeIn ease 3s;
+        animation-fill-mode: forwards;
+      }
+
+      @keyframes fadeIn {
+        0% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+
+      .article-categories {
+        margin-bottom: 60px;
+      }
+
+      .category {
+        display: flex;
+        align-items: center;
+        margin-top: 2rem;
+      }
+
+      .category-title {
+        font-size: 2rem;
+        color: #f9d371;
+        margin-right: 20px;
+        text-transform: uppercase;
+        flex-grow: 1;
+      }
+
+      .category-controls {
+        display: flex;
+        align-items: center;
+      }
+
+      .scroll-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 2vw;
+        height: 2vw;
+        background-color: #f9d371;
+        border: none;
+        color: #001d3d;
+        padding: 10px;
+        cursor: pointer;
+        border-radius: 50%;
+        font-size: 1rem;
+        margin: 0 10px;
+      }
+
+      .scroll-button:hover {
+        background-color: #ffc300;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="home.html">CalmSpace</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="home.html"
+                ><i class="fas fa-home"></i> Home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="meditation.html"
+                ><i class="fas fa-yin-yang"></i> Meditation</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="sleep.html"
+                ><i class="fas fa-bed"></i> Sleep</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="blog.html"
+                ><i class="fas fa-copy"></i> Blogs</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="statusCheck.html"
+                ><i class="fas fa-heart"></i> Quiz</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="resources.html"
+                ><i class="fas fa-book"></i> Resources</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="supportServices.html"
+                ><i class="fas fa-handshake"></i> Support</a
+              >
+            </li>
+            <li class="nav-item">
+              <a href="login.html"
+                ><button class="btn-login">Log out</button></a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero fade-in">
+      <h1>Resources</h1>
+      <p>Explore educational content to enhance your wellness journey.</p>
+    </div>
+
+    <!-- Categories Section -->
+    <div class="container mt-5 article-categories">
+      <div class="category">
+        <h2 class="category-title">Mental Health Articles</h2>
+        <div class="category-controls">
+          <button class="scroll-button left">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <button class="scroll-button right">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Article Cards Section -->
+      <div class="article-list-container">
+        <div class="article-list">
+          <!-- Article 1 Card -->
+          <div class="article-card">
+            <div class="article-image">
+              <img
+                src="../img/brain-5779040_1920.png"
+                alt="Understanding Anxiety"
+              />
+            </div>
+            <div class="article-content">
+              <h3>Understanding Anxiety</h3>
+              <p>
+                Anxiety is a natural response to stress. Learn about its causes,
+                symptoms, and how to manage it effectively.
+              </p>
+              <button
+                class="btn-read-more"
+                data-toggle="modal"
+                data-target="#article1Modal"
+              >
+                Read More
+              </button>
+            </div>
+          </div>
+
+          <!-- Article 2 Card -->
+          <div class="article-card">
+            <div class="article-image">
+              <img
+                src="../img/sunset-5065300_1920.jpg"
+                alt="Overcoming Stress"
+              />
+            </div>
+            <div class="article-content">
+              <h3>Overcoming Stress</h3>
+              <p>
+                Discover practical strategies to combat stress and maintain a
+                balanced life in today's fast-paced world.
+              </p>
+              <button
+                class="btn-read-more"
+                data-toggle="modal"
+                data-target="#article2Modal"
+              >
+                Read More
+              </button>
+            </div>
+          </div>
+
+          <!-- Article 3 Card -->
+          <div class="article-card">
+            <div class="article-image">
+              <img
+                src="../img/ai-generated-8880063_1920.png"
+                alt="Self-Care Tips"
+              />
+            </div>
+            <div class="article-content">
+              <h3>Self-Care Tips</h3>
+              <p>
+                Explore daily habits and routines that can boost your mental
+                health and enhance your overall well-being.
+              </p>
+              <button
+                class="btn-read-more"
+                data-toggle="modal"
+                data-target="#article3Modal"
+              >
+                Read More
+              </button>
+            </div>
+          </div>
+
+          <!-- Article 4 Card -->
+          <div class="article-card">
+            <div class="article-image">
+              <img
+                src="https://cdn.pixabay.com/photo/2020/05/06/17/18/meditation-5138375_1280.png"
+                alt="Mindfulness for Beginners"
+              />
+            </div>
+            <div class="article-content">
+              <h3>Mindfulness for Beginners</h3>
+              <p>
+                An introduction to mindfulness, a powerful tool to reduce stress
+                and improve mental clarity. Learn the basics here.
+              </p>
+              <button
+                class="btn-read-more"
+                data-toggle="modal"
+                data-target="#article4Modal"
+              >
+                Read More
+              </button>
+            </div>
+          </div>
+
+          <!-- Article 5 Card -->
+          <div class="article-card">
+            <div class="article-image">
+              <img
+                src="../img/caricature-5268743_1920.jpg"
+                alt="Coping with Insomnia"
+              />
+            </div>
+            <div class="article-content">
+              <h3>Coping with Insomnia</h3>
+              <p>
+                Struggling with sleep? Learn about the causes of insomnia and
+                tips for improving your sleep quality.
+              </p>
+              <button
+                class="btn-read-more"
+                data-toggle="modal"
+                data-target="#article5Modal"
+              >
+                Read More
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal for Article 1 -->
+    <div
+      class="modal fade"
+      id="article1Modal"
+      tabindex="-1"
+      aria-labelledby="article1ModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="article1ModalLabel">
+              Understanding Anxiety
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>
+              Anxiety is a natural response to stress, often helping us stay
+              alert. However, when it becomes overwhelming, it can disrupt daily
+              life. Here's a brief look at anxiety, its causes, symptoms, and
+              ways to manage it.
+            </p>
+            <p>
+              <strong>Common symptoms</strong>
+            </p>
+            <ul>
+              <li>Excessive worry</li>
+              <li>Restlessness or irritability</li>
+              <li>Difficulty concentrating</li>
+              <li>Rapid heartbeat or sweating></li>
+            </ul>
+
+            <p>
+              <strong>Causes</strong>
+            </p>
+            <ul>
+              <li>Genetics</li>
+              <li>Past trauma or stress</li>
+              <li>Imbalances in brain chemistry</li>
+              <li>External stressors (work, relationships, health concerns)</li>
+            </ul>
+            <p>
+              <strong>Coping Strategies</strong>
+            </p>
+            <ul>
+              <li>Exercise: Regular physical activity helps reduce stress.</li>
+              <li>
+                Sleep & Diet: Proper rest and nutrition improve mental health.
+              </li>
+              <li>
+                Breathing Exercises: Deep breathing calms the mind and body.
+              </li>
+              <li>
+                Mindfulness: Meditation and relaxation techniques promote
+                relaxation.
+              </li>
+            </ul>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal for Article 2 -->
+    <div
+      class="modal fade"
+      id="article2Modal"
+      tabindex="-1"
+      aria-labelledby="article2ModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="article2ModalLabel">
+              Overcoming Stress
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>
+              Stress is an inevitable part of life. However, learning how to
+              manage and reduce it can greatly enhance your well-being. This
+              article provides practical strategies to overcome stress, such as
+              time management techniques, mindfulness practices, and physical
+              exercise recommendations.
+            </p>
+            <p><strong>Stress Management Tips</strong></p>
+            <ul>
+              <li>Prioritize tasks and set realistic goals.</li>
+              <li>
+                Break large tasks into smaller steps to avoid feeling
+                overwhelmed.
+              </li>
+              <li>
+                Practice meditation or deep breathing exercises to calm your
+                mind.
+              </li>
+              <li>
+                Stay present in the moment to reduce anxiety about future
+                concerns.
+              </li>
+              <li>
+                Regular physical activity, like walking or yoga, can relieve
+                tension.
+              </li>
+            </ul>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal for Article 3 -->
+    <div
+      class="modal fade"
+      id="article3Modal"
+      tabindex="-1"
+      aria-labelledby="article3ModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="article3ModalLabel">Self-Care Tips</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>
+              Self-care involves activities that we do deliberately to take care
+              of our mental, emotional, and physical health.
+            </p>
+            <p><strong>Self Care Tips</strong></p>
+            <ul>
+              <li>
+                Writing down your thoughts and feelings helps clear your mind
+                and process emotions.
+              </li>
+              <li>Reflect on your day, set goals, or practice gratitude.</li>
+              <li>
+                Start your day with intention by establishing a consistent
+                morning routine.
+              </li>
+              <li>
+                Include activities like stretching, meditation, or a healthy
+                breakfast to set a positive tone for the day.
+              </li>
+              <li>
+                Protect your mental and emotional space by learning to say no
+                and creating healthy limits.
+              </li>
+              <li>
+                Prioritize time for yourself to recharge and avoid burnout.
+              </li>
+            </ul>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal for Article 4 -->
+    <div
+      class="modal fade"
+      id="article4Modal"
+      tabindex="-1"
+      aria-labelledby="article4ModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="article4ModalLabel">
+              Mindfulness for Beginners
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>
+              Mindfulness is the practice of being fully present in the moment.
+              In this article, we discuss the basics of mindfulness, its
+              benefits for mental health, and how to start practicing it through
+              simple techniques like mindful breathing and meditation.
+            </p>
+            <p><strong>Benefits of Mindfulness for Mental Health:</strong></p>
+            <ul>
+              <li>Reduces stress and anxiety</li>
+              <li>Improves focus and concentration</li>
+              <li>Enhances emotional regulation</li>
+              <li>Promotes relaxation and overall well-being</li>
+            </ul>
+
+            <p><strong>How to Practice Mindfulness: </strong></p>
+            <ul>
+              <li>
+                Focus on your breath, taking slow, deep breaths, and paying
+                attention to each inhale and exhale.
+              </li>
+              <li>
+                Set aside a few minutes daily to sit quietly and observe your
+                thoughts without judgment, returning your focus to your breath
+                whenever your mind wanders.
+              </li>
+            </ul>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal for Article 5 -->
+    <div
+      class="modal fade"
+      id="article5Modal"
+      tabindex="-1"
+      aria-labelledby="article5ModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="article5ModalLabel">
+              Coping with Insomnia
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>
+              Insomnia affects millions of people worldwide. This article dives
+              into the causes of insomnia, its impact on overall health, and
+              actionable steps you can take to improve your sleep quality.
+            </p>
+            <p><strong>Common Causes of Insomnia:</strong></p>
+            <ul>
+              <li>Stress and anxiety</li>
+              <li>Poor sleep habits</li>
+              <li>Caffeine or alcohol consumption</li>
+              <li>Medical conditions or medications</li>
+            </ul>
+            <p><strong>Impact of Insomnia on Health:</strong></p>
+            <ul>
+              <li>Fatigue and low energy</li>
+              <li>Difficulty concentrating</li>
+              <li>Mood swings or irritability</li>
+              <li>Weakened immune system</li>
+            </ul>
+            <p><strong>Tips to Improve Sleep Quality</strong></p>
+            <ul>
+              <li>
+                Stick to a consistent sleep schedule and relax before bed with
+                calming activities like reading or taking a warm bath.
+              </li>
+              <li>
+                Avoid using electronic devices at least an hour before bed to
+                reduce exposure to blue light, which can disrupt your sleep.
+              </li>
+              <li>
+                Try deep breathing, progressive muscle relaxation, or meditation
+                to calm your mind and body before sleep.
+              </li>
+            </ul>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container mt-5 video-categories">
+      <div class="category">
+        <h2 class="category-title">Informative Videos</h2>
+        <div class="category-controls">
+          <button class="scroll-button left">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <button class="scroll-button right">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+      <div class="video-list-container">
+        <div class="video-list">
+          <iframe
+            width="400"
+            height="220"
+            src="https://www.youtube.com/embed/G0zJGDokyWQ?si=FuyfxcIY-H2qqfUI"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+          ></iframe>
+          <iframe
+            width="400"
+            height="220"
+            src="https://www.youtube.com/embed/7-1Y6IbAxdM?si=kANdbKffUsshBOvU"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+          ></iframe>
+          <iframe
+            width="400"
+            height="220"
+            src="https://www.youtube.com/embed/18qcsQqC9bQ?si=O3rY9zwB-XRLJOwr"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+          ></iframe>
+          <iframe
+            width="400"
+            height="220"
+            src="https://www.youtube.com/embed/rkZl2gsLUp4?si=8J_pfc04INBokUwV"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+          ></iframe>
+          <iframe
+            width="400"
+            height="220"
+            src="https://www.youtube.com/embed/5bNI_NloNa8?si=YwfywAYlaX0BV2Bl"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+      document.querySelectorAll(".scroll-button").forEach((button) => {
+        button.addEventListener("click", function () {
+          const container = this.closest(".category").nextElementSibling;
+          const direction = this.classList.contains("left") ? "left" : "right";
+          const scrollAmount = 300;
+          if (direction === "left") {
+            container.scrollLeft -= scrollAmount;
+          } else {
+            container.scrollLeft += scrollAmount;
+          }
+        });
+      });
+
+      window.onscroll = function () {
+        const navbar = document.querySelector(".navbar");
+        if (
+          document.body.scrollTop > 50 ||
+          document.documentElement.scrollTop > 50
+        ) {
+          navbar.classList.add("scrolled");
+        } else {
+          navbar.classList.remove("scrolled");
+        }
+      };
+    </script>
+  </body>
+</html>

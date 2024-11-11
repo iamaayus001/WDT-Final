@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Support Services - CalmSpace</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Nunito:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Nunito", sans-serif;
+        background-color: #001d3d;
+        margin: 0;
+        padding: 0;
+        color: #eaecee;
+        background: linear-gradient(rgba(0, 29, 61, 0.7), rgba(0, 29, 61, 0.7)),
+          url("../img/customer-support-7111206_1920.png") no-repeat center/cover;
+        background-attachment: fixed;
+      }
+
+      .navbar {
+        position: fixed;
+        width: 100%;
+        z-index: 1000;
+        transition: background-color 0.3s ease;
+        background-color: transparent;
+      }
+
+      .navbar.scrolled {
+        background-color: rgba(0, 29, 61, 0.8);
+      }
+
+      .navbar-brand {
+        color: #f9d371;
+        font-size: 1.8rem;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+
+      .nav-link {
+        color: #e0e4e8;
+        font-weight: 500;
+        font-size: 1.1rem;
+        margin-right: 1.5rem;
+        transition: color 0.3s ease, transform 0.3s ease;
+      }
+
+      .nav-link:hover {
+        color: #f9d371;
+        transform: scale(1.05);
+      }
+
+      .nav-item.active .nav-link {
+        color: #f9d371;
+        font-weight: bold;
+      }
+
+      .btn-login {
+        background-color: #f9d371;
+        color: #001d3d;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+      }
+
+      .btn-login:hover {
+        background-color: #ffc300;
+      }
+
+      .hero {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: #eaecee;
+        padding: 20px;
+      }
+
+      .fade-in {
+        opacity: 0;
+        animation: fadeIn ease 3s;
+        animation-fill-mode: forwards;
+      }
+
+      @keyframes fadeIn {
+        0% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: auto;
+      }
+
+      .resources-list {
+        margin-top: 100px;
+        padding: 20px;
+        background-color: #001d3d46;
+        border-radius: 10px;
+      }
+
+      .resources-list h2 {
+        color: #f9d371;
+        margin-bottom: 30px;
+        text-align: center;
+      }
+
+      .district-section {
+        margin-bottom: 30px;
+      }
+
+      .district-section h3 {
+        color: #f9d371;
+        margin-bottom: 10px;
+        font-size: 1.5rem;
+      }
+
+      .resources-list ul {
+        padding-left: 1.5rem;
+      }
+
+      .resources-list ul li {
+        font-size: 1rem;
+        line-height: 1.8;
+      }
+
+      .resources-list ul li h4 {
+        font-size: large;
+        font-weight: bolder;
+        margin-bottom: -1rem;
+        margin-top: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="home.html">CalmSpace</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="home.html"
+                ><i class="fas fa-home"></i> Home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="meditation.html"
+                ><i class="fas fa-yin-yang"></i> Meditation</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="sleep.html"
+                ><i class="fas fa-bed"></i> Sleep</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="blog.html"
+                ><i class="fas fa-copy"></i> Blogs</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="statusCheck.html"
+                ><i class="fas fa-heart"></i> Quiz</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="resources.html"
+                ><i class="fas fa-book"></i> Resources</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="supportServices.html"
+                ><i class="fas fa-handshake"></i> Support</a
+              >
+            </li>
+            <li class="nav-item">
+              <a href="login.html"
+                ><button class="btn-login">Log out</button></a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero fade-in">
+      <h1>Support Services</h1>
+      <p>Explore professional services and helplines available in Nepal.</p>
+    </div>
+
+    <!-- Resources Section -->
+    <div class="resources-list container">
+      <h2>Professional Services</h2>
+
+      <!-- Kathmandu District -->
+      <div class="district-section">
+        <h3>Kathmandu District (Bagmati Province)</h3>
+        <ul>
+          <li>
+            <h4>Patan Mental Hospital</h4>
+            <br />
+            Address: Lagankhel, Lalitpur<br />
+            Contact: +977-1-5521614 / 5531707<br />
+            Services: Specialized mental health treatment, psychotherapy,
+            counseling.
+          </li>
+          <li>
+            <h4>Nepal Mental Hospital</h4>
+            <br />
+            Address: Lagankhel, Lalitpur<br />
+            Contact: +977-1-5521603<br />
+            Services: Inpatient and outpatient mental health services,
+            counseling, psychiatric care.
+          </li>
+          <li>
+            <h4>Transcultural Psychosocial Organization (TPO) Nepal</h4>
+            <br />
+            Address: Baluwatar, Kathmandu<br />
+            Contact: +977-1-4427173 / 4431717<br />
+            Services: Psychosocial support, counseling, community-based mental
+            health programs.
+          </li>
+          <li>
+            <h4>Psychiatrists at TU Teaching Hospital</h4>
+            <br />
+            Address: Maharajgunj, Kathmandu<br />
+            Contact: +977-1-4412303<br />
+            Services: Psychiatric consultations, medication management, therapy
+            sessions.
+          </li>
+        </ul>
+      </div>
+
+      <!-- Lalitpur District -->
+      <div class="district-section">
+        <h3>Lalitpur District (Bagmati Province)</h3>
+        <ul>
+          <li>
+            <h4>Psychiatric Department, KIST Medical College</h4>
+            <br />
+            Address: Imadol, Lalitpur<br />
+            Contact: +977-1-5201680<br />
+            Services: Psychiatric assessments, treatment, and counseling.
+          </li>
+          <li>
+            <h4>Psychological Counseling and Psychotherapy Clinic</h4>
+            <br />
+            Address: Jwalakhel, Lalitpur<br />
+            Contact: +977-1-5521603<br />
+            Services: Counseling, psychotherapy, workshops on mental health and
+            wellness.
+          </li>
+        </ul>
+      </div>
+
+      <!-- Pokhara District -->
+      <div class="district-section">
+        <h3>Pokhara District (Gandaki Province)</h3>
+        <ul>
+          <li>
+            <h4>Manomaya Counseling Center</h4>
+            <br />
+            Address: Lekhnath, Pokhara<br />
+            Contact: +977-1-5201680<br />
+            Services: Counseling, psychotherapy, and mental health awareness
+            programs.
+          </li>
+          <li>
+            <h4>Gandaki Medical College – Psychiatry Department</h4>
+            <br />
+            Address: Pokhara, Kaski<br />
+            Contact: +977-1-5201680<br />
+            Services: Mental health treatment, psychiatric evaluations,
+            counseling.
+          </li>
+        </ul>
+      </div>
+
+      <!-- Chitwan District -->
+      <div class="district-section">
+        <h3>Chitwan District (Bagmati Province)</h3>
+        <ul>
+          <li>
+            <h4>Chitwan Medical College (CMC) – Psychiatry Unit</h4>
+            <br />
+            Address: Bharatpur, Chitwan<br />
+            Contact: +977-56-532628<br />
+            Services: Counseling, psychotherapy, and mental health awareness
+            programs.
+          </li>
+          <li>
+            <h4>Bharatpur Hospital – Psychiatry Department</h4>
+            <br />
+            Address: Bharatpur, Chitwan<br />
+            Contact: +977-56-527761<br />
+            Services: Mental health consultations, medication, psychological
+            counseling.
+          </li>
+        </ul>
+      </div>
+
+      <!-- Biratnagar District -->
+      <div class="district-section">
+        <h3>Biratnagar District (Province 1)</h3>
+        <ul>
+          <li>
+            <h4>Nobel Medical College – Psychiatry Department</h4>
+            <br />
+            Address: Biratnagar, Morang<br />
+            Contact: +977-1-5201680<br />
+            Services: Psychiatric services, treatment of mood disorders,
+            addiction treatment.
+          </li>
+          <li>
+            <h4>Mental Health Clinic, Koshi Hospital</h4>
+            <br />
+            Address: Biratnagar, Morang<br />
+            Contact: +977-1-5201680<br />
+            Services: Counseling, therapy, psychiatric care.
+          </li>
+        </ul>
+      </div>
+
+      <!-- Dhangadhi District -->
+      <div class="district-section">
+        <h3>Dhangadhi District (Sudurpashchim Province)</h3>
+        <ul>
+          <li>
+            <h4>Seti Zonal Hospital – Mental Health Unit</h4>
+            <br />
+            Address: Dhangadhi, Kailali<br />
+            Contact: +977-91-521150<br />
+            Services: Mental health services, psychological counseling,
+            psychiatric treatment.
+          </li>
+          <li>
+            <h4>United Mission Hospital</h4>
+            <br />
+            Address: Dadeldhura<br />
+            Contact: +977-96-410275<br />
+            Services: Psychosocial support, mental health services, counseling
+            for stress and trauma.
+          </li>
+        </ul>
+      </div>
+
+      <!-- Butwal District -->
+      <div class="district-section">
+        <h3>Butwal District (Lumbini Province)</h3>
+        <ul>
+          <li>
+            <h4>Lumbini Zonal Hospital – Mental Health Department</h4>
+            <br />
+            Address: Butwal, Rupandehi<br />
+            Contact: +977-71-520197<br />
+            Services: Inpatient and outpatient psychiatric care, counseling,
+            mental health services.
+          </li>
+          <li>
+            <h4>Butwal Hospital – Psychiatry Department</h4>
+            <br />
+            Address: Butwal, Rupandehi<br />
+            Contact: +977-71-541132<br />
+            Services: Psychiatric services, psychological evaluations,
+            counseling.
+          </li>
+        </ul>
+      </div>
+
+      <!-- Dharan District -->
+      <div class="district-section">
+        <h3>Dharan District (Province 1)</h3>
+        <ul>
+          <li>
+            <h4>
+              B.P. Koirala Institute of Health Sciences (BPKIHS) – Psychiatry
+              Unit
+            </h4>
+            <br />
+            Address: Dharan, Sunsari<br />
+            Contact: +977-25-525555<br />
+            Services: Psychiatric care, therapy, and mental health training
+            programs.
+          </li>
+        </ul>
+      </div>
+
+      <!-- Nepalgunj District -->
+      <div class="district-section">
+        <h3>Nepalgunj District (Lumbini Province)</h3>
+        <ul>
+          <li>
+            <h4>Nepalgunj Medical College – Psychiatry Department</h4>
+            <br />
+            Address: Kohalpur, Nepalgunj<br />
+            Contact: +977-71-520197<br />
+            Services: Psychiatric services, counseling, and mental health
+            awareness.
+          </li>
+          <li>
+            <h4>Bheri Zonal Hospital – Psychiatry Department</h4>
+            <br />
+            Address: Nepalgunj, Banke<br />
+            Contact: +977-81-520197<br />
+            Services: Psychiatric consultations, therapy sessions, addiction
+            treatment.
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- HelpLine Section -->
+    <div class="resources-list container">
+      <h2>Emergency Helplines</h2>
+
+      <!-- HelpLines List -->
+      <div class="resources-section">
+        <ul>
+          <li>
+            <h4>Nepal Suicide Prevention Hotline (TUTH Helpline)</h4>
+            <br />
+            Operating Hours: 24/7<br />
+            Contact: 1166 (Toll-Free)<br />
+            Service: Suicide prevention support, counseling, and referrals for
+            those in emotional distress.
+          </li>
+          <li>
+            <h4>TPO Nepal (Transcultural Psychosocial Organization)</h4>
+            <br />
+            Operating Hours: Weekdays (Office hours)<br />
+            Contact: +977-1-5358671 / 5358672<br />
+            Service: Mental health counseling, psychosocial support, and
+            emotional assistance.
+          </li>
+          <li>
+            <h4>Koshish Helpline</h4>
+            <br />
+            Operating Hours: 8 AM – 8 PM<br />
+            Contact: +977-16600133200 (Toll-Free)<br />
+            Service: Mental health and suicide prevention support, including
+            outreach for those in need of urgent psychological help.
+          </li>
+          <li>
+            <h4>Psychiatric Hospital, Lagankhel, Lalitpur</h4>
+            <br />
+            Operating Hours: 24/7 emergency psychiatric services.<br />
+            Contact: +977-56-532628<br />
+            Service: Emergency mental health services, including crisis
+            intervention and support.
+          </li>
+          <li>
+            <h4>
+              Patan Academy of Health Sciences (PAHS) - Mental Health Unit
+            </h4>
+            <br />
+            Operating Hours: Weekdays (Office hours)<br />
+            Contact: +977-1-5522295<br />
+            Service: Mental health and counseling services, offering support to
+            those in psychological distress.
+          </li>
+          <li>
+            <h4>Asha Suicide Prevention Helpline</h4>
+            <br />
+            Operating Hours: 10 AM – 7 PM<br />
+            Contact: +977-9821285339 / +977-9821036801<br />
+            Service: Mental health services, psychological counseling,
+            psychiatric treatment.
+          </li>
+          <li>
+            <h4>Crisis Helpline at Maiti Nepal</h4>
+            <br />
+            Operating Hours: 24/7<br />
+            Contact: +977-1-4492904 / 4494816<br />
+            Service: Support for women and children, including mental health
+            crises, abuse, and trauma-related cases.
+          </li>
+          <li>
+            <h4>Voice of Children - Mental Health and Crisis Support</h4>
+            <br />
+            Operating Hours: Office hours<br />
+            Contact: +977-1-5551553<br />
+            Service: Provides support for children in emotional distress, abuse
+            recovery, and crisis counseling.
+          </li>
+          <li>
+            <h4>Nepal Red Cross Society - Psycho-social Support Helpline</h4>
+            <br />
+            Operating Hours: Office hours<br />
+            Contact: +977-11431043<br />
+            Service: Psychological first aid and crisis counseling for
+            individuals experiencing mental health challenges.
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+      window.onscroll = function () {
+        const navbar = document.querySelector(".navbar");
+        if (
+          document.body.scrollTop > 50 ||
+          document.documentElement.scrollTop > 50
+        ) {
+          navbar.classList.add("scrolled");
+        } else {
+          navbar.classList.remove("scrolled");
+        }
+      };
+    </script>
+  </body>
+</html>

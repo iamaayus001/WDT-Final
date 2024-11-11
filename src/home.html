@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CalmSpace</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Nunito:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Nunito", sans-serif;
+        background-color: #001d3d;
+        margin: 0;
+        padding: 0;
+        color: #eaecee;
+      }
+
+      .navbar {
+        background: transparent;
+        box-shadow: none;
+        position: absolute;
+        width: 100%;
+        z-index: 1000;
+      }
+
+      .navbar-brand {
+        color: #e0e4e8;
+        font-size: 1.8rem;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+
+      .nav-link {
+        color: #e0e4e8;
+        font-weight: 500;
+        font-size: 1.1rem;
+        margin-right: 1.5rem;
+        transition: color 0.3s ease;
+      }
+
+      .nav-link i {
+        margin-right: 0.1rem;
+      }
+
+      .nav-link:hover {
+        color: #f9d371;
+      }
+
+      .nav-item.active .nav-link {
+        color: #f9d371;
+        font-weight: bold;
+      }
+
+      .nav-item.active .nav-link:hover {
+        color: #ffc300;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+        50% {
+          transform: scale(1.1);
+          opacity: 0.8;
+        }
+      }
+
+      .btn-login {
+        background-color: #f9d371;
+        color: #001d3d;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+      }
+
+      .btn-login:hover {
+        background-color: #ffc300;
+      }
+
+      .hero {
+        height: 100vh;
+        background: linear-gradient(rgba(0, 29, 61, 0.7), rgba(0, 29, 61, 0.7)),
+          url("../img/Homepage.webp") no-repeat center center/cover;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: #eaecee;
+        padding: 20px;
+      }
+
+      .hero h1 {
+        font-size: 4.5rem;
+        margin-bottom: 20px;
+        font-weight: 600;
+        line-height: 1.2;
+        text-transform: uppercase;
+      }
+
+      .hero p {
+        font-size: 1.8rem;
+        margin-bottom: 40px;
+        font-weight: 300;
+        color: #c5d2d9;
+      }
+
+      .get-started-btn {
+        background-color: #f9d371;
+        color: #001d3d;
+        padding: 15px 40px;
+        font-size: 1.3rem;
+        border: none;
+        border-radius: 50px;
+        transition: background-color 0.3s ease;
+        box-shadow: 0 6px 20px rgba(249, 211, 113, 0.4);
+      }
+
+      .get-started-btn:hover {
+        background-color: #ffc300;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: auto;
+      }
+
+      .fade-in {
+        opacity: 0;
+        animation: fadeIn ease 3s;
+        animation-fill-mode: forwards;
+      }
+
+      @keyframes fadeIn {
+        0% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .hero h1 {
+          font-size: 3rem;
+        }
+
+        .hero p {
+          font-size: 1.5rem;
+        }
+
+        .get-started-btn {
+          padding: 12px 30px;
+          font-size: 1.2rem;
+        }
+
+        #panicButton {
+          font-size: 16px;
+          padding: 10px 20px;
+        }
+
+        .nav-link {
+          font-size: 1rem;
+          margin-right: 1rem;
+        }
+
+        .navbar-brand {
+          font-size: 1.5rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .hero h1 {
+          font-size: 2.5rem;
+        }
+
+        .hero p {
+          font-size: 1.2rem;
+        }
+
+        .get-started-btn {
+          padding: 10px 20px;
+          font-size: 1rem;
+        }
+
+        #panicButton {
+          font-size: 14px;
+          padding: 8px 16px;
+        }
+
+        .nav-link {
+          font-size: 0.9rem;
+          margin-right: 0.5rem;
+        }
+
+        .navbar-brand {
+          font-size: 1.2rem;
+        }
+      }
+
+      .input-group {
+        margin: 15px 0;
+      }
+
+      .input-field {
+        width: 100%;
+        padding: 15px;
+        border: none;
+        border-radius: 10px;
+        background-color: rgba(255, 255, 255, 0.3);
+        color: #eaecee;
+        font-size: 1rem;
+        transition: background-color 0.3s ease;
+      }
+
+      .input-field:focus {
+        background-color: rgba(255, 255, 255, 0.5);
+        outline: none;
+      }
+
+      .btn-submit {
+        width: 100%;
+        padding: 15px;
+        border: none;
+        border-radius: 10px;
+        background-color: #f9d371;
+        color: #001d3d;
+        font-size: 1.2rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+      }
+
+      .btn-submit:hover {
+        background-color: #ffc300;
+        transform: scale(1.05);
+      }
+
+      .close {
+        color: #f9d371;
+        float: right;
+        font-size: 1.5rem;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+      @media (max-width: 768px) {
+        .modal-title {
+          font-size: 1.8rem;
+        }
+
+        .input-field {
+          font-size: 0.9rem;
+        }
+
+        .btn-submit {
+          font-size: 1rem;
+        }
+
+        .close {
+          font-size: 1.2rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .modal-title {
+          font-size: 1.5rem;
+        }
+
+        .input-field {
+          font-size: 0.8rem;
+        }
+
+        .btn-submit {
+          font-size: 0.9rem;
+        }
+
+        .close {
+          font-size: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="home.html">CalmSpace</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="home.html"
+                ><i class="fas fa-home"></i> Home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="meditation.html"
+                ><i class="fas fa-yin-yang"></i> Meditation</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="sleep.html"
+                ><i class="fas fa-bed"></i> Sleep</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="blog.html"
+                ><i class="fas fa-copy"></i> Blogs</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="statusCheck.html"
+                ><i class="fas fa-heart"></i> Quiz</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="resources.html"
+                ><i class="fas fa-book"></i> Resources</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="supportServices.html"
+                ><i class="fas fa-handshake"></i> Support</a
+              >
+            </li>
+            <li class="nav-item">
+              <a href="login.html"
+                ><button class="btn-login">Log out</button></a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section (Welcome Section) -->
+    <div class="hero fade-in">
+      <div>
+        <h1>Welcome to CalmSpace</h1>
+        <p id="quote">"Find your peace in the mountains and the breeze."</p>
+        <a href="meditation.html"
+          ><button class="get-started-btn">Get Started</button></a
+        >
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+      // Dynamic Quote Functionality
+      const quotes = [
+        "Find your peace in the mountains and the breeze.",
+        "Serenity flows from the heights to the soul.",
+        "In every mountain, there is calm.",
+        "Let nature's peace flow through you.",
+        "Feel the calm in the heart of the earth.",
+      ];
+
+      function getRandomQuote() {
+        const randomIndex = Math.floor(Math.random() * quotes.length);
+        document.getElementById("quote").innerText = quotes[randomIndex];
+      }
+
+      getRandomQuote();
+    </script>
+  </body>
+</html>

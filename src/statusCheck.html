@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CalmSpace</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Nunito:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Nunito", sans-serif;
+        background-color: #001d3d;
+        margin: 0;
+        padding: 0;
+        color: #eaecee;
+        background: linear-gradient(rgba(0, 29, 61, 0.7), rgba(0, 29, 61, 0.7)),
+          url("../img/mountains-1412683_1920.png") no-repeat center/cover;
+        background-attachment: fixed;
+      }
+
+      .navbar {
+        position: fixed;
+        width: 100%;
+        z-index: 1000;
+        transition: background-color 0.3s ease;
+        background-color: transparent;
+      }
+
+      .navbar.scrolled {
+        background-color: rgba(0, 29, 61, 0.8);
+      }
+
+      .navbar-brand {
+        color: #f9d371;
+        font-size: 1.8rem;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+
+      .nav-link {
+        color: #e0e4e8;
+        font-weight: 500;
+        font-size: 1.1rem;
+        margin-right: 1.5rem;
+        transition: color 0.3s ease, transform 0.3s ease;
+      }
+
+      .nav-link:hover {
+        color: #f9d371;
+        transform: scale(1.05);
+      }
+
+      .nav-item.active .nav-link {
+        color: #f9d371;
+        font-weight: bold;
+      }
+
+      .btn-login {
+        background-color: #f9d371;
+        color: #001d3d;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+      }
+
+      .btn-login:hover {
+        background-color: #ffc300;
+      }
+
+      .hero {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: #eaecee;
+        padding: 20px;
+      }
+
+      .fade-in {
+        opacity: 0;
+        animation: fadeIn ease 3s;
+        animation-fill-mode: forwards;
+      }
+
+      @keyframes fadeIn {
+        0% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .hero h1 {
+          font-size: 3rem;
+        }
+
+        .hero p {
+          font-size: 1.5rem;
+        }
+
+        .featured-video {
+          font-size: 1.5rem;
+        }
+
+        .category-title {
+          font-size: 1.2rem;
+        }
+
+        .video-title {
+          font-size: 0.9rem;
+        }
+
+        .scroll-button i {
+          font-size: 0.7rem;
+        }
+
+        .nav-link {
+          font-size: 1rem;
+          margin-right: 1rem;
+        }
+
+        .navbar-brand {
+          font-size: 1.5rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .hero h1 {
+          font-size: 2.5rem;
+        }
+
+        .hero p {
+          font-size: 1.2rem;
+        }
+
+        .featured-video {
+          font-size: 1.2rem;
+        }
+
+        .category-title {
+          font-size: 1rem;
+        }
+
+        .video-title {
+          font-size: 0.8rem;
+        }
+
+        .scroll-button {
+          font-size: 1rem;
+        }
+        .nav-link {
+          font-size: 0.9rem;
+          margin-right: 0.5rem;
+        }
+
+        .navbar-brand {
+          font-size: 1.2rem;
+        }
+      }
+
+      /* Main Content */
+      main {
+        flex: 1;
+        padding: 40px 0;
+        width: 60%;
+        height: 70%;
+        margin-top: 2rem;
+      }
+
+      .status-check {
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 2.5rem;
+        background-color: white;
+        box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+      }
+
+      .status-check h2 {
+        text-align: center;
+        margin-bottom: 2rem;
+        font-size: 2rem;
+        color: #2c3e50;
+      }
+
+      .status-check form {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .status-check label {
+        margin-bottom: 10px;
+        font-size: 1.2rem;
+        color: #555;
+      }
+
+      .status-check select {
+        padding: 12px;
+        font-size: 1rem;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        transition: border-color 0.3s, box-shadow 0.3s;
+      }
+
+      .status-check select:focus {
+        border-color: #3498db;
+        outline: none;
+        box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+      }
+
+      .status-check button {
+        background-color: #18bc9c;
+        color: white;
+        padding: 15px;
+        font-size: 1.2rem;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.2s;
+        margin-top: 10px;
+      }
+
+      .status-check button:hover {
+        background-color: #16a085;
+        transform: translateY(-2px);
+      }
+
+      #status-result {
+        margin-top: 30px;
+        padding: 2.5rem;
+        background-color: #e6f7f5;
+        border-radius: 10px;
+        text-align: center;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.5s, transform 0.5s;
+      }
+
+      #status-result.hidden {
+        display: none;
+      }
+
+      #status-result:not(.hidden) {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      #status-result h3 {
+        margin-bottom: 15px;
+        font-size: 1.8rem;
+        color: #2c3e50;
+      }
+
+      #status-result h4 {
+        margin-top: 20px;
+        margin-bottom: 10px;
+        font-size: 1.4rem;
+        color: #2c3e50;
+      }
+
+      #status-message,
+      #mood-message {
+        font-size: 1.2rem;
+        color: #555;
+        margin-bottom: 20px;
+        line-height: 1.6;
+      }
+
+      #video-recommendation {
+        margin-top: 25px;
+      }
+
+      #video-link {
+        display: inline-block;
+        background-color: #3498db;
+        color: white;
+        padding: 12px 25px;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s, transform 0.2s;
+        font-size: 1.1rem;
+      }
+
+      #video-link:hover {
+        background-color: #2980b9;
+        transform: translateY(-2px);
+      }
+
+      @media (max-width: 768px) {
+        .status-check {
+          margin: 20px;
+          padding: 20px;
+        }
+
+        .status-check h2 {
+          font-size: 1.8rem;
+        }
+
+        .status-check label,
+        .status-check select,
+        .status-check button {
+          font-size: 1rem;
+        }
+
+        #status-result h3 {
+          font-size: 1.6rem;
+        }
+
+        #status-result h4 {
+          font-size: 1.3rem;
+        }
+
+        #status-message,
+        #mood-message {
+          font-size: 1.1rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .status-check {
+          padding: 15px;
+        }
+
+        .status-check h2 {
+          font-size: 1.6rem;
+        }
+
+        #video-link {
+          padding: 10px 20px;
+          font-size: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="home.html">CalmSpace</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="home.html"
+                ><i class="fas fa-home"></i> Home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="meditation.html"
+                ><i class="fas fa-yin-yang"></i> Meditation</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="sleep.html"
+                ><i class="fas fa-bed"></i> Sleep</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="blog.html"
+                ><i class="fas fa-copy"></i> Blogs</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="statusCheck.html"
+                ><i class="fas fa-heart"></i> Quiz</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="resources.html"
+                ><i class="fas fa-book"></i> Resources</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="supportServices.html"
+                ><i class="fas fa-handshake"></i> Support</a
+              >
+            </li>
+            <li class="nav-item">
+              <a href="login.html"
+                ><button class="btn-login">Log out</button></a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section (Welcome Section) -->
+    <div class="hero fade-in">
+      <main>
+        <section class="status-check">
+          <h2>Check Your Mental Health Status</h2>
+          <form id="status-form">
+            <label for="question1">How often do you feel anxious?</label>
+            <select id="question1">
+              <option value="1">Rarely</option>
+              <option value="2">Sometimes</option>
+              <option value="3">Often</option>
+              <option value="4">Almost Always</option>
+            </select>
+
+            <label for="question2">Do you have trouble sleeping?</label>
+            <select id="question2">
+              <option value="1">No</option>
+              <option value="2">Occasionally</option>
+              <option value="3">Frequently</option>
+              <option value="4">Always</option>
+            </select>
+
+            <label for="question3"
+              >Do you feel overwhelmed with daily tasks?</label
+            >
+            <select id="question3">
+              <option value="1">Never</option>
+              <option value="2">Sometimes</option>
+              <option value="3">Often</option>
+              <option value="4">Always</option>
+            </select>
+
+            <label for="mood"
+              >Overall, how would you describe your mood today?</label
+            >
+            <select id="mood">
+              <option value="happy">Happy</option>
+              <option value="sad">Sad</option>
+              <option value="anxious">Anxious</option>
+              <option value="excited">Excited</option>
+              <option value="tired">Tired</option>
+            </select>
+
+            <button type="button" class="btn" onclick="checkStatus()">
+              Submit
+            </button>
+          </form>
+
+          <div id="status-result" class="hidden">
+            <h3>Your Mental Health Status</h3>
+            <p id="status-message"></p>
+            <h4>Your Mood</h4>
+            <p id="mood-message"></p>
+            <div id="video-recommendation">
+              <h4>Here's a video that might help:</h4>
+              <a id="video-link" href="#" target="_blank">Watch Video</a>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+      // Dynamic Quote Functionality
+      const quotes = [
+        "Find your peace in the mountains and the breeze.",
+        "Serenity flows from the heights to the soul.",
+        "In every mountain, there is calm.",
+        "Let nature's peace flow through you.",
+        "Feel the calm in the heart of the earth.",
+      ];
+
+      function getRandomQuote() {
+        const randomIndex = Math.floor(Math.random() * quotes.length);
+        document.getElementById("quote").innerText = quotes[randomIndex];
+      }
+
+      getRandomQuote();
+    </script>
+    <script>
+      function checkStatus() {
+        const question1 = parseInt(document.getElementById("question1").value);
+        const question2 = parseInt(document.getElementById("question2").value);
+        const question3 = parseInt(document.getElementById("question3").value);
+        const mood = document.getElementById("mood").value;
+
+        const statusResult = document.getElementById("status-result");
+        const statusMessage = document.getElementById("status-message");
+        const moodMessage = document.getElementById("mood-message");
+        const videoLink = document.getElementById("video-link");
+
+        statusResult.classList.remove("hidden");
+
+        // Calculate total score
+        const totalScore = question1 + question2 + question3;
+
+        // Determine status message based on total score
+        let statusRecommendation = "";
+        if (totalScore <= 4) {
+          statusRecommendation =
+            "Your mental health seems to be in a good state. Keep up the good work and continue practicing self-care!";
+        } else if (totalScore <= 8) {
+          statusRecommendation =
+            "You may be experiencing mild stress. Consider incorporating relaxation techniques into your daily routine.";
+        } else if (totalScore <= 11) {
+          statusRecommendation =
+            "You might be dealing with moderate stress levels. It may be helpful to talk to a friend or consider professional support.";
+        } else {
+          statusRecommendation =
+            "Your responses indicate high stress levels. We strongly recommend reaching out to a mental health professional for support.";
+        }
+
+        statusMessage.textContent = statusRecommendation;
+
+        // Determine mood message and video link
+        const moodResponses = {
+          happy: {
+            message:
+              "That's wonderful! Your positive energy can brighten someone else's day too. Keep spreading joy!",
+            video: "https://www.youtube.com/watch?v=ZbZSe6N_BXs",
+          },
+          sad: {
+            message:
+              "I'm sorry you're feeling down. Remember, it's okay to have bad days. This feeling will pass, and there are people who care about you.",
+            video: "https://www.youtube.com/watch?v=STdJ__8ORyE",
+          },
+          anxious: {
+            message:
+              "Anxiety can be challenging, but you're stronger than you think. Take deep breaths and remember that you've overcome difficult times before.",
+            video: "https://www.youtube.com/watch?v=O-6f5wQXSu8",
+          },
+          excited: {
+            message:
+              "Your enthusiasm is contagious! Embrace this positive energy and let it fuel your day.",
+            video: "https://www.youtube.com/watch?v=ru0K8uYEZWw",
+          },
+          tired: {
+            message:
+              "It's important to listen to your body. Take some time to rest and recharge. Your well-being comes first.",
+            video: "https://www.youtube.com/watch?v=5f5N6YFjvVc",
+          },
+        };
+
+        const response = moodResponses[mood];
+        moodMessage.textContent = response.message;
+        videoLink.href = response.video;
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const form = document.getElementById("status-form");
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+          checkStatus();
+        });
+
+        // Add animation to the submit button
+        const submitButton = document.querySelector(".btn");
+        submitButton.addEventListener("mouseenter", function () {
+          this.style.transform = "scale(1.05)";
+        });
+        submitButton.addEventListener("mouseleave", function () {
+          this.style.transform = "scale(1)";
+        });
+
+        // Add animation to all select elements
+        const selectElements = document.querySelectorAll("select");
+        selectElements.forEach((select) => {
+          select.addEventListener("change", function () {
+            this.style.transform = "scale(1.05)";
+            setTimeout(() => {
+              this.style.transform = "scale(1)";
+            }, 200);
+          });
+        });
+      });
+
+      window.onscroll = function () {
+        const navbar = document.querySelector(".navbar");
+        if (
+          document.body.scrollTop > 50 ||
+          document.documentElement.scrollTop > 50
+        ) {
+          navbar.classList.add("scrolled");
+        } else {
+          navbar.classList.remove("scrolled");
+        }
+      };
+    </script>
+  </body>
+</html>

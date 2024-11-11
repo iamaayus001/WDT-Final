@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meditation - CalmSpace</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Nunito:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Nunito", sans-serif;
+        background-color: #001d3d;
+        margin: 0;
+        padding: 0;
+        color: #eaecee;
+        background: linear-gradient(rgba(0, 29, 61, 0.7), rgba(0, 29, 61, 0.7)),
+          url("../img/meditation.webp") no-repeat bottom/cover;
+        background-attachment: fixed;
+        overflow-x: hidden;
+      }
+
+      .navbar {
+        position: fixed;
+        width: 100%;
+        z-index: 1000;
+        transition: background-color 0.3s ease;
+        background-color: transparent;
+      }
+
+      .navbar.scrolled {
+        background-color: rgba(0, 29, 61, 0.8);
+      }
+
+      .navbar-brand {
+        color: #f9d371;
+        font-size: 1.8rem;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+
+      .nav-link {
+        color: #e0e4e8;
+        font-weight: 500;
+        font-size: 1.1rem;
+        margin-right: 1.5rem;
+        transition: color 0.3s ease, transform 0.3s ease;
+      }
+
+      .nav-link:hover {
+        color: #f9d371;
+        transform: scale(1.05);
+      }
+
+      .nav-item.active .nav-link {
+        color: #f9d371;
+        font-weight: bold;
+      }
+
+      .btn-login {
+        background-color: #f9d371;
+        color: #001d3d;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+      }
+
+      .btn-login:hover {
+        background-color: #ffc300;
+      }
+
+      .hero {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: #eaecee;
+        padding: 20px;
+        background-size: cover;
+      }
+
+      .fade-in {
+        opacity: 0;
+        animation: fadeIn ease 3s;
+        animation-fill-mode: forwards;
+      }
+
+      @keyframes fadeIn {
+        0% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+
+      .featured-video {
+        text-align: center;
+        color: #f9d371;
+        font-size: 2rem;
+        margin: 20px 0;
+      }
+
+      .featured-video-container {
+        width: 100%;
+      }
+
+      .video-categories {
+        margin-bottom: 60px;
+      }
+
+      .category {
+        display: flex;
+        align-items: center;
+        margin-top: 2rem;
+      }
+
+      .category-title {
+        font-size: 2rem;
+        color: #f9d371;
+        margin-right: 20px;
+        text-transform: uppercase;
+        flex-grow: 1;
+      }
+
+      .category-controls {
+        display: flex;
+        align-items: center;
+      }
+
+      .scroll-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 2vw;
+        height: 2vw;
+        background-color: #f9d371;
+        border: none;
+        color: #001d3d;
+        padding: 10px;
+        cursor: pointer;
+        border-radius: 50%;
+        font-size: 1rem;
+        margin: 0 10px;
+      }
+
+      .scroll-button:hover {
+        background-color: #ffc300;
+      }
+
+      .video-list-container {
+        overflow-x: hidden;
+        white-space: nowrap;
+        scroll-behavior: smooth;
+      }
+
+      .video-list {
+        display: inline-flex;
+        transition: transform 0.3s ease;
+        white-space: nowrap;
+        scroll-behavior: smooth;
+      }
+
+      .video-item {
+        display: inline-block;
+        margin-right: 20px;
+        text-align: center;
+      }
+
+      .video-item img {
+        width: 180px;
+        height: auto;
+        border-radius: 10px;
+      }
+
+      .video-title {
+        margin-top: 5px;
+        color: #eaecee;
+        font-weight: bold;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        max-width: 400px;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: auto;
+      }
+
+      @media (max-width: 768px) {
+        .hero h1 {
+          font-size: 3rem;
+        }
+
+        .hero p {
+          font-size: 1.5rem;
+        }
+
+        .featured-video {
+          font-size: 1.5rem;
+        }
+
+        .category-title {
+          font-size: 1.2rem;
+        }
+
+        .video-title {
+          font-size: 0.9rem;
+        }
+
+        .scroll-button i {
+          font-size: 0.7rem;
+        }
+
+        .nav-link {
+          font-size: 1rem;
+          margin-right: 1rem;
+        }
+
+        .navbar-brand {
+          font-size: 1.5rem;
+        }
+
+        .btn-login {
+          padding: 8px 15px;
+          font-size: 0.9rem;
+        }
+
+        .video-item img {
+          width: 140px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .hero h1 {
+          font-size: 2.5rem;
+        }
+
+        .hero p {
+          font-size: 1.2rem;
+        }
+
+        .featured-video {
+          font-size: 1.2rem;
+        }
+
+        .category-title {
+          font-size: 1rem;
+        }
+
+        .video-title {
+          font-size: 0.8rem;
+        }
+
+        .scroll-button {
+          font-size: 1rem;
+          padding: 5px;
+        }
+
+        .nav-link {
+          font-size: 0.9rem;
+          margin-right: 0.5rem;
+        }
+
+        .navbar-brand {
+          font-size: 1.2rem;
+        }
+
+        .btn-login {
+          padding: 6px 12px;
+          font-size: 0.8rem;
+        }
+
+        .video-item img {
+          width: 100px;
+        }
+      }
+
+      @media (max-width: 320px) {
+        .hero h1 {
+          font-size: 2rem;
+        }
+
+        .hero p {
+          font-size: 1rem;
+        }
+
+        .featured-video {
+          font-size: 1rem;
+        }
+
+        .category-title {
+          font-size: 0.9rem;
+        }
+
+        .video-title {
+          font-size: 0.7rem;
+        }
+
+        .scroll-button {
+          font-size: 0.9rem;
+          padding: 3px;
+        }
+
+        .nav-link {
+          font-size: 0.8rem;
+          margin-right: 0.3rem;
+        }
+
+        .navbar-brand {
+          font-size: 1rem;
+        }
+
+        .btn-login {
+          padding: 5px 10px;
+          font-size: 0.7rem;
+        }
+
+        .video-item img {
+          width: 80px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="home.html">CalmSpace</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="home.html"
+                ><i class="fas fa-home"></i> Home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="meditation.html"
+                ><i class="fas fa-yin-yang"></i> Meditation</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="sleep.html"
+                ><i class="fas fa-bed"></i> Sleep</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="blog.html"
+                ><i class="fas fa-copy"></i> Blogs</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="statusCheck.html"
+                ><i class="fas fa-heart"></i> Quiz</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="resources.html"
+                ><i class="fas fa-book"></i> Resources</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="supportServices.html"
+                ><i class="fas fa-handshake"></i> Support</a
+              >
+            </li>
+            <li class="nav-item">
+              <a href="login.html"
+                ><button class="btn-login">Log out</button></a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="hero fade-in">
+      <h1>Today's Meditation</h1>
+      <p>Experience tranquility and peace through guided meditation.</p>
+    </div>
+
+    <!-- Featured Video Section -->
+    <div class="container mt-5 fade-in">
+      <h2 class="featured-video">Featured Video</h2>
+      <div class="featured-video-container">
+        <div id="featured-video"></div>
+      </div>
+    </div>
+    <!-- Categories Section -->
+    <div class="container mt-5 video-categories">
+      <div class="category">
+        <h2 class="category-title">5-Minute Meditations</h2>
+        <div class="category-controls">
+          <button class="scroll-button left">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <button class="scroll-button right">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+      <div class="video-list-container">
+        <div class="video-list" id="5-minute-videos"></div>
+      </div>
+    </div>
+
+    <div class="container mt-5 video-categories">
+      <div class="category">
+        <h2 class="category-title">10-Minute Meditations</h2>
+        <div class="category-controls">
+          <button class="scroll-button left">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <button class="scroll-button right">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+      <div class="video-list-container">
+        <div class="video-list" id="10-minute-videos"></div>
+      </div>
+    </div>
+
+    <div class="container mt-5 video-categories">
+      <div class="category">
+        <h2 class="category-title">15-minute Meditations</h2>
+        <div class="category-controls">
+          <button class="scroll-button left">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <button class="scroll-button right">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+      <div class="video-list-container">
+        <div class="video-list" id="15-minute-videos"></div>
+      </div>
+    </div>
+
+    <div class="container mt-5 video-categories">
+      <div class="category">
+        <h2 class="category-title">30-minute Meditations</h2>
+        <div class="category-controls">
+          <button class="scroll-button left">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <button class="scroll-button right">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+      <div class="video-list-container">
+        <div class="video-list" id="30-minute-videos"></div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+      const apiKey = "AIzaSyCUQdGnzBaboOLRkn9xMXGRX5KFIZ1iWX0";
+      const playlistIds = {
+        "5-minute-videos": "PL7by6RYPG3HDc04dtETBExwyl_az6iWoY",
+        "10-minute-videos": "PLGyU5_fAI7L75sb9fWa-PE-iZ-IjmX6OG",
+        "15-minute-videos": "PLqxOk5-J3bJMzbhm6vKG3HRyt9wJfdMuO",
+        "30-minute-videos": "PLQkQfzsIUwRbwThq097kokkK6tCaSPUxa",
+      };
+      const maxResults = 5;
+
+      const featuredVideoId = "U9YKY7fdwyg";
+
+      function loadFeaturedVideo() {
+        const featuredVideoContainer =
+          document.getElementById("featured-video");
+        featuredVideoContainer.innerHTML = `
+          <iframe width="100%" height="600" src="https://www.youtube.com/embed/${featuredVideoId}" frameborder="0" allowfullscreen></iframe>
+        `;
+      }
+
+      function fetchVideos(playlistId, containerId) {
+        fetch(
+          `https://www.googleapis.com/youtube/v3/playlistItems?key=${apiKey}&playlistId=${playlistId}&part=snippet&maxResults=${maxResults}`
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            const videoListContainer = document.getElementById(containerId);
+            videoListContainer.innerHTML = "";
+            data.items.forEach((video) => {
+              const videoId = video.snippet.resourceId.videoId;
+              const videoTitle = video.snippet.title;
+              const videoFrame = `
+        <div class="video-item">
+          <iframe width="400" height="220" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe>
+          <div class="video-title">${videoTitle}</div>
+        </div>`;
+              videoListContainer.innerHTML += videoFrame;
+            });
+          })
+          .catch((error) => console.error("Error fetching videos:", error));
+      }
+
+      // Load the featured video on page load
+      loadFeaturedVideo();
+
+      Object.entries(playlistIds).forEach(([category, id]) => {
+        fetchVideos(id, `${category.toLowerCase().replace(/ /g, "-")}`);
+      });
+
+      window.onscroll = function () {
+        const navbar = document.querySelector(".navbar");
+        if (
+          document.body.scrollTop > 50 ||
+          document.documentElement.scrollTop > 50
+        ) {
+          navbar.classList.add("scrolled");
+        } else {
+          navbar.classList.remove("scrolled");
+        }
+      };
+
+      function handleScroll(container, direction) {
+        const scrollAmount = 300;
+        if (direction === "left") {
+          container.scrollLeft -= scrollAmount;
+        } else if (direction === "right") {
+          container.scrollLeft += scrollAmount;
+        }
+      }
+
+      document.querySelectorAll(".scroll-button").forEach((button) => {
+        button.addEventListener("click", function () {
+          const videoListContainer =
+            this.closest(".category").nextElementSibling;
+          const direction = this.classList.contains("left") ? "left" : "right";
+          handleScroll(videoListContainer, direction);
+        });
+      });
+    </script>
+  </body>
+</html>
